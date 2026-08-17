@@ -1,5 +1,4 @@
 import numpy as np
-import random
 from enum import Enum
 from agent import Agent
 from front import Front
@@ -91,7 +90,7 @@ class Model:
 
         # if the action is random change it to be a direction movement
         if action == Action.RANDOM:
-            action = Action(random.randint(1,4))
+            action = Action(np.random.randint(1,4))
         
         match action:
             case Action.UP:
@@ -120,4 +119,6 @@ class Model:
                     self.grid_copy[x,y] = False
                 else:
                     agent.add_score(EMPTY_SITE_PICKUP_PENALTY)
+            case _:
+                pass
                 
