@@ -22,11 +22,12 @@ class EvolutionManager:
     def generate_next_generation(self, agent1: Agent = None, agent2: Agent = None):
         agents = []
         population = POPULATION
-        # reset the score TODO
+        # save the best performing individuals from previous generation
         if agent1 and agent2:
-            agents.append(Agent(agent1.dna))
-            agents.append(Agent(agent2.dna))
+            agents.append(agent1)
+            agents.append(agent2)
             population -= 2
+        # populate next generations with children of the two best preforming agents
         for i in range(population):
             agent = agent1.sexually_reproduce(agent2) if agent1 else Agent()
             self.model.score_agent(agent)
