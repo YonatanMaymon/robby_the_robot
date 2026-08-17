@@ -6,7 +6,7 @@ model = Model()
 
 evolution_manager = EvolutionManager(model)
 
-for i in range(10):
+for i in range(2):
     print("generation: " + str(i))
     evolution_manager.step()
 

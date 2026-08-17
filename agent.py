@@ -15,7 +15,7 @@ class Agent:
         self.score += add
 
     def sexually_reproduce(self, partner: Agent):
-        partners_genes_locations = np.random.choice(DNA_SIZE, (DNA_SIZE+1)//2)
+        partners_genes_locations = np.random.choice(DNA_SIZE, (DNA_SIZE+1)//2, replace= False)
         # self copy of genes
         child_dna = self.dna.copy()
         # adds partners share
@@ -26,7 +26,7 @@ class Agent:
         return child
 
     def mutate(self):
-        mutation_locations = np.random.choice(DNA_SIZE, MUTATION_FACTOR)
+        mutation_locations = np.random.choice(DNA_SIZE, MUTATION_FACTOR, replace= False)
         self.dna[mutation_locations] = np.random.randint(0, 7, size= MUTATION_FACTOR)
 
     def generate_random_dna(self):
