@@ -6,6 +6,7 @@ DNA_SIZE = 243
 class Agent:
     def __init__(self, dna: np.ndarray = None):
         self.dna = dna if dna is not None else self.generate_random_dna()
+        # agent position in a cartesian graph
         self.position = (0,0)
         self.score = 0
 

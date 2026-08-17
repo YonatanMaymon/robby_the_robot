@@ -93,20 +93,20 @@ class Model:
         
         match action:
             case Action.UP:
-                if y <= 0:
+                if y >= self.height -1:
                     agent.add_score(WALL_CRASH_PENALTY)
                 else:
-                    agent.position = (x,y-1)
+                    agent.position = (x,y+1)
             case Action.LEFT:
                 if x == 0:
                     agent.add_score(WALL_CRASH_PENALTY)
                 else:
                     agent.position = (x-1,y)
             case Action.DOWN:
-                if y >= self.height -1:
+                if y <= 0:
                     agent.add_score(WALL_CRASH_PENALTY)
                 else:
-                    agent.position = (x,y+1)
+                    agent.position = (x,y-1)
             case Action.RIGHT:
                 if x == self.width-1:
                     agent.add_score(WALL_CRASH_PENALTY)
