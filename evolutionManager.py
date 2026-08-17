@@ -16,7 +16,7 @@ class EvolutionManager:
         agent1, agent2 = heapq.nlargest(2, self.agents, key= lambda a: a.score)
         # saving the best agent so far
         print("best score is " + str(agent1.score))
-        self.best_agent = agent1
+        self.best_agent = Agent(agent1.dna)
         self.generate_next_generation(agent1, agent2)
 
     def generate_next_generation(self, agent1: Agent = None, agent2: Agent = None):

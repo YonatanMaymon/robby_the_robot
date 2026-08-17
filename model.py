@@ -39,10 +39,11 @@ class Model:
             front = Front(self, agent)
             front.define_grid()
         while time <= 500 and np.any(self.grid_copy):
-            self.act(agent= agent)
-            time += 1
             if is_show:
                 front.step()
+            self.act(agent= agent)
+            time += 1
+            
         if is_show: front.show()
 
     def act(self, agent: Agent):

@@ -16,8 +16,7 @@ class Front:
         # CRITICAL: Lock vmin and vmax so color 0, 1, and 2 always map to the exact same colors
         self.image = ax.imshow(self.model.grid, cmap='Blues', vmin=0, vmax=2)
 
-        # plt.imshow(self.model.grid, cmap='Blues')
-        # Add lines between cells (grid gridlines sit at half-step boundaries)
+        # Add lines between cells (grid grid lines sit at half-step boundaries)
         ax.set_xticks(np.arange(-0.5, 22, 1))
         ax.set_yticks(np.arange(-0.5, 22, 1))
         ax.grid(color='black', linestyle='-', linewidth=1)
@@ -25,6 +24,7 @@ class Front:
         # Remove number labels on axes for a clean board look
         ax.set_xticklabels([])
         ax.set_yticklabels([])
+        ax.invert_yaxis()
         # Overlay Agent marker on top
         self.agent_marker, = ax.plot([], [], marker='o', color='red', markersize=16, label='Agent')
         ax.legend(loc='upper right')
@@ -36,6 +36,7 @@ class Front:
         self.image.set_data(self.model.grid_copy)
         x, y = self.agent.position
         self.agent_marker.set_data([x],[y])
+        print ((x,y))
         plt.pause(0.1)
     def show(self):
         plt.ioff()
