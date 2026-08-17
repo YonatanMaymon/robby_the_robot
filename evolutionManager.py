@@ -24,13 +24,14 @@ class EvolutionManager:
         population = POPULATION
         # save the best performing individuals from previous generation
         if agent1 and agent2:
-            agents.append(agent1)
-            agents.append(agent2)
+            agents.append(Agent(agent1.dna))
+            agents.append(Agent(agent2.dna))
             population -= 2
         # populate next generations with children of the two best preforming agents
-        for i in range(population):
+        for _ in range(population):
             agent = agent1.sexually_reproduce(agent2) if agent1 else Agent()
-            self.model.score_agent(agent)
             agents.append(agent)
+        for agent in agents:
+            self.model.score_agent(agent)
         self.agents = agents
         print("generated " + str(len(self.agents)) + " agents")

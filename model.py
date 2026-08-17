@@ -3,6 +3,8 @@ import random
 from enum import Enum
 from agent import Agent
 from front import Front
+from consts import WIDTH, HEIGHT, CANS
+
 
 CAN_BONUS = 10
 EMPTY_SITE_PICKUP_PENALTY = -1
@@ -21,11 +23,10 @@ class Model:
     '''
     a class for the creation and control of a grid map model, each grid may contain a can
     '''
-    def __init__(self, width, height, n):
-        self.grid = np.zeros((width,height), dtype = bool) # a matrix of 0s
-        self._populate_grid(n)
-        self.width = width
-        self.height = height
+    def __init__(self):
+        self.grid = np.zeros((WIDTH, HEIGHT), dtype = bool) # a matrix of 0s
+        self._populate_grid(CANS)
+
 
     def _populate_grid(self, n):
         flat_indexes = np.random.choice(self.grid.size, size = n, replace= 0)
@@ -61,7 +62,7 @@ class Model:
         else: state.append(2)
 
         # look to the left, if a wall append 2 if it has a can append 1 otherwise append 0
-        if x < self.width - 1: 
+        if x < WIDTH - 1: 
             state.append(1) if self.grid_copy[x+1,y] else state.append(0)
         else: state.append(2)
 
@@ -71,7 +72,7 @@ class Model:
         else: state.append(2)
 
         # look down, if a wall append 2 if it has a can append 1 otherwise append 0
-        if y < self.height - 1:
+        if y < HEIGHT - 1:
             state.append(1) if self.grid_copy[x,y+1] else state.append(0)
         else: state.append(2)
 
@@ -94,7 +95,7 @@ class Model:
         
         match action:
             case Action.UP:
-                if y >= self.height -1:
+                if y >= HEIGHT -1:
                     agent.add_score(WALL_CRASH_PENALTY)
                 else:
                     agent.position = (x,y+1)
@@ -109,7 +110,7 @@ class Model:
                 else:
                     agent.position = (x,y-1)
             case Action.RIGHT:
-                if x == self.width-1:
+                if x == WIDTH - 1:
                     agent.add_score(WALL_CRASH_PENALTY)
                 else:
                     agent.position = (x+1,y)

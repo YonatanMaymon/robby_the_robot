@@ -1,4 +1,5 @@
 import numpy as np
+from consts import WIDTH, HEIGHT
 
 MUTATION_FACTOR = 30
 DNA_SIZE = 243
@@ -7,7 +8,7 @@ class Agent:
     def __init__(self, dna: np.ndarray = None):
         self.dna = dna if dna is not None else self.generate_random_dna()
         # agent position in a cartesian graph
-        self.position = (0,0)
+        self.position = np.random.randint(low=[0,0], high=[WIDTH,HEIGHT])
         self.score = 0
 
     def add_score(self, add):

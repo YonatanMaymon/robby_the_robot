@@ -1,0 +1,3 @@
+WIDTH = 25
+HEIGHT = 25
+CANS = 25

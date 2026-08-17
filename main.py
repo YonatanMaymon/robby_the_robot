@@ -2,11 +2,11 @@
 from evolutionManager import EvolutionManager
 from model import Model
 
-model = Model(22,22,22)
+model = Model()
 
 evolution_manager = EvolutionManager(model)
 
-for i in range(1):
+for i in range(10):
     print("generation: " + str(i))
     evolution_manager.step()
 
